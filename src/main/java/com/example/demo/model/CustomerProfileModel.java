@@ -1,4 +1,6 @@
 package com.example.demo.model
+
+
  public class CustomerProfileModel{
     private Long id;
     private String customerId;
@@ -8,5 +10,5 @@ package com.example.demo.model
     private String currentTier;
     private boolean active;
     private LocalDateTime createdAt;
-    
+
  }

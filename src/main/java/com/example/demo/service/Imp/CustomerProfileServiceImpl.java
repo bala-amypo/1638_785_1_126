@@ -28,8 +28,16 @@ public class CustomerProfileServiceImpl implements CustomerProfileService{
  @Override
  public  CustomerProfile updateTier(Long id,String newTier){
     if(customerProfileRepository.existsById(id)){
-        entity.setId(id);
-        return customerProfileRepository.save(entity);
+        newTier.setId(id);
+        return customerProfileRepository.save(newTier);
+    }
+     return null;
+ }
+ @Override
+ public  CustomerProfile updateStatus(Long id,boolean active){
+    if(customerProfileRepository.existsById(id)){
+        active.setId(id);
+        return customerProfileRepository.save(active);
     }
      return null;
  }

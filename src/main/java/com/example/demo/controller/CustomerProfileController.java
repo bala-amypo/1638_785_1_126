@@ -12,21 +12,21 @@ import java.util.List;
 
 @RestController
 public class CustomerProfileController{
-    @Autowired CustomerProfileService ser;
-@PostMapping("/post")
-public CustomerProfile dopost(@RequestBody CustomerProfile stu){
-    return ser.postdata(stu);
+    @Autowired CustomerProfileService customerProfileService;
+@PostMapping("/api/customer")
+public CustomerProfile dopost(@RequestBody CustomerProfile customer){
+    return customerProfileService.createCustomer(customer);
 }
 @GetMapping("/get")
 public List<CustomerProfile>getval(){
-    return ser.getAllData();
+    return customerProfileService.getAllData();
 }
 @GetMapping("/getid/{id}")
 public CustomerProfile getdataid(@PathVariable int id){
-   return ser.getData(id);
+   return customerProfileService.getData(id);
 }
 @PutMapping ("/put/{id}")
 public CustomerProfile putval(@PathVariable int id, @RequestBody CustomerProfile entity){
- return ser.updateData(id,entity);
+ return customerProfileService.updateData(id,entity);
 }
 }

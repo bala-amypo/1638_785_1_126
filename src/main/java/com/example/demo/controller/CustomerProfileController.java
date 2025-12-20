@@ -17,7 +17,7 @@ public class CustomerProfileController{
 public CustomerProfile dopost(@RequestBody CustomerProfile customer){
     return customerProfileService.createCustomer(customer);
 }
-@GetMapping("/api/customers")
+@GetMapping("/api/customer")
 public List<CustomerProfile>getval(){
     return customerProfileService.getAllCustomers();
 }

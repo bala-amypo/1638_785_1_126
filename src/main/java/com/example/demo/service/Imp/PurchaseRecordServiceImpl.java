@@ -1,35 +1,30 @@
 package com.example.demo.service.Impl;
 import org.springframework.stereotype.Service;
-import com.example.demo.service.StudentService;
+import com.example.demo.service.PurchaseRecordService;
 import  com.example.demo.entity.PurchaseRecord;
-import  com.example.demo.repository.StudentRepository;
+import  com.example.demo.repository.PurchaseRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
-public class StudentServiceImpl implements StudentService{
-      @Autowired StudentRepository student;
+public class PurchaseRecordServiceImpl implements PurchaseRecordService{
+      @Autowired PurchaseRecordRepository purchaseRecordRepository;
      
       @Override
- public StudentEntity postdata(StudentEntity stu){
-    return student.save(stu);
+ public PurchaseRecord postdata(PurchaseRecord stu){
+    return purchaseRecordRepository.save(stu);
  }
  @Override
- public List<StudentEntity> getAllData(){
-      return student.findAll();
+ public List<PurchaseRecord> getAllData(){
+      return purchaseRecordRepository.findAll();
  }
  @Override
- public  String deleteData(int id){
-     student.deleteById(id);
-     return "Deleted Successfully";
+ public  PurchaseRecord getData(int id){
+    return purchaseRecordRepository.findById(id).orElse(null);
  }
  @Override
- public  StudentEntity getData(int id){
-    return student.findById(id).orElse(null);
- }
- @Override
- public  StudentEntity updateData(int id,StudentEntity entity){
-    if(student.existsById(id)){
+ public PurchaseRecordupdateData(int id,StudentEntity entity){
+    if(purchaseRecordRepository.existsById(id)){
         entity.setId(id);
         return student.save(entity);
     }

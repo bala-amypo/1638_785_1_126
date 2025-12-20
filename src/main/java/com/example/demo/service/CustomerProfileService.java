@@ -1,10 +1,9 @@
 package com.example.demo.service;
 import com.example.demo.entity.CustomerProfile;
 import java.util.List;
-public interface StudentService{
-     postdata(StudentEntity stu);
-    List<StudentEntity> getAllData();
-    String deleteData(int id);
-    StudentEntity getData(int id);
+public interface CustomerProfileService{
+    CustomerProfile createCustomer(CustomerProfile customer);
+    List<CustomerProfile> getAllCustomers();
+    CustomerProfile getCustomerById(Long id);
     StudentEntity updateData(int id,StudentEntity entity);
 }

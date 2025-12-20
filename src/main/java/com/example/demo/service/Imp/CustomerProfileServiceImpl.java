@@ -76,8 +76,6 @@ public class CustomerProfileServiceImpl implements CustomerProfileService {
 
     @Override
     public CustomerProfile findByCustomerId(String customerId) {
-        // ❗ findById expects Long, not String
-        // This assumes you have a field `customerId` in entity
         return customerProfileRepository.findByCustomerId(customerId);
     }
 

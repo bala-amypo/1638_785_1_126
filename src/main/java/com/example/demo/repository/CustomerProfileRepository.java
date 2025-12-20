@@ -5,5 +5,5 @@ import com.example.demo.entity.CustomerProfile;
 @Repository
 public interface CustomerProfileRepository extends JpaRepository<CustomerProfile,Long>{
     
-
+CustomerProfile findByCustomerId(String customerId);
 }

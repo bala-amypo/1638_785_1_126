@@ -17,16 +17,16 @@ public class PurchaseRecordController{
 public PurchaseRecord dopost(@RequestBody PurchaseRecord purchase){
     return purchaseRecordService.recordPurchase(purchase);
 }
-@GetMapping("/get/purchases/customer/{id}")
-public List<PurchaseRecord>getval(){
-    return purchaseRecordService.getAllData();
+@GetMapping("/api/purchases/{id}")
+public List<PurchaseRecord>getdataid(@PathVariable Long id){
+    return purchaseRecordService.getPurchaseById(id);
 }
 @GetMapping("/get/purchases/customer/{customerId}")
 public PurchaseRecord getdataid(@PathVariable int customerId){
    return purchaseRecordService.getPurchasesByCustomer(customerId);
 }
-@PutMapping ("/put/{id}")
-public PurchaseRecord putval(@PathVariable int id, @RequestBody PurchaseRecord entity){
- return purchaseRecordService.updateData(id,entity);
+@GetMapping("/api/purchases")
+public List<StudentEntity>getval(){
+    return ser.getAllData();
 }
 }

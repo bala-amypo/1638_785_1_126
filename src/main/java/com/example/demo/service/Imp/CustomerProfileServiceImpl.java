@@ -7,30 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
-public class StudentServiceImpl implements StudentService{
+public class CustomerProfileServiceImpl implements CustomerProfileService{
       @Autowired CustomerProfileRepository customerProfileRepository;
       @Override
- public StudentEntity postdata(StudentEntity stu){
-    return customerProfileRepository.save(stu);
+ public CustomerProfile createCustomer(CustomerProfile customer){
+    return customerProfileRepository.save(customer);
  }
  @Override
- public List<StudentEntity> getAllData(){
-      return student.findAll();
+ public List<CustomerProfile> getAllCustomers(){
+      return customerProfileRepository.findAll();
  }
  @Override
- public  String deleteData(int id){
-     student.deleteById(id);
-     return "Deleted Successfully";
- }
- @Override
- public  StudentEntity getData(int id){
-    return student.findById(id).orElse(null);
+ public  CustomerProfile getCustomerById(Long id){
+    return customerProfileRepository.findById(id).orElse(null);
  }
  @Override
  public  StudentEntity updateData(int id,StudentEntity entity){
-    if(student.existsById(id)){
+    if(customerProfileRepository.existsById(id)){
         entity.setId(id);
-        return student.save(entity);
+        return customerProfileRepository.save(entity);
     }
      return null;
  }

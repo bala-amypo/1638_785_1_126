@@ -26,7 +26,7 @@ public PurchaseRecord getdataid(@PathVariable int customerId){
    return purchaseRecordService.getPurchasesByCustomer(customerId);
 }
 @GetMapping("/api/purchases")
-public List<StudentEntity>getval(){
-    return ser.getAllData();
+public List<PurchaseRecord>getval(){
+    return purchaseRecordService.getAllPurchases();
 }
 }

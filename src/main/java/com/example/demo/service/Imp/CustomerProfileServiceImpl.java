@@ -21,8 +21,12 @@ public class CustomerProfileServiceImpl implements CustomerProfileService{
  public  CustomerProfile getCustomerById(Long id){
     return customerProfileRepository.findById(id).orElse(null);
  }
+  @Override
+ public  CustomerProfile findByCustomerId(String customerId){
+    return customerProfileRepository.findById(customerId).orElse(null);
+ }
  @Override
- public  StudentEntity updateData(int id,StudentEntity entity){
+ public  CustomerProfile updateTier(Long id,String newTier){
     if(customerProfileRepository.existsById(id)){
         entity.setId(id);
         return customerProfileRepository.save(entity);

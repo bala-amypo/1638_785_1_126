@@ -29,8 +29,8 @@ public CustomerProfile getdataid(@PathVariable Long id){
 public CustomerProfile getdataid(@PathVariable int customerId){
    return customerProfileService.findByCustomerId(id);
 }
-@PutMapping ("/put/{id}")
-public CustomerProfile putval(@PathVariable int id, @RequestBody CustomerProfile entity){
+@PutMapping ("/api/customer/{id}/tier")
+public CustomerProfile putval(@PathVariable long id, @RequestBody String newTier){
  return customerProfileService.updateData(id,entity);
 }
 }

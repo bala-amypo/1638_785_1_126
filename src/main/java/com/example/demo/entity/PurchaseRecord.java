@@ -5,7 +5,7 @@ package com.example.demo.model;
     private Long id;
     private long customerId;
     private double amount;
-    private String email;
+    private LocalDate email;
     private String phone;
     
  }

@@ -25,6 +25,10 @@ public List<CustomerProfile>getval(){
 public CustomerProfile getdataid(@PathVariable Long id){
    return customerProfileService.getCustomerById(id);
 }
+@GetMapping("/api/customer/lookup/{customerId}")
+public CustomerProfile getdataid(@PathVariable int customerId){
+   return customerProfileService.findByCustomerId(id);
+}
 @PutMapping ("/put/{id}")
 public CustomerProfile putval(@PathVariable int id, @RequestBody CustomerProfile entity){
  return customerProfileService.updateData(id,entity);

@@ -19,11 +19,11 @@ public class PurchaseRecordServiceImpl implements PurchaseRecordService{
       return purchaseRecordRepository.findAll();
  }
  @Override
- public List<PurchaseRecord> getPurchaesByCustomer(){
-      return purchaseRecordRepository.findBycustomerId(Long id);
+ public List<PurchaseRecord> getPurchasesByCustomer(long customerId){
+      return purchaseRecordRepository.findAll();
  }
  @Override
- public  PurchaseRecord getData(int id){
+ public PurchaseRecord getPurchaseById(Long id){
     return purchaseRecordRepository.findById(id).orElse(null);
  }
 }

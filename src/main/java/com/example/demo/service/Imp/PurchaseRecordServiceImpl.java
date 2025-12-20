@@ -15,12 +15,12 @@ public class PurchaseRecordServiceImpl implements PurchaseRecordService{
     return purchaseRecordRepository.save(purchase);
  }
  @Override
- public List<PurchaseRecord> getAllData(){
+ public List<PurchaseRecord> getAllPurchases(){
       return purchaseRecordRepository.findAll();
  }
  @Override
- public List<PurchaseRecord> getAllData(){
-      return purchaseRecordRepository.findAll();
+ public List<PurchaseRecord> getPurchaesByCustomer(){
+      return purchaseRecordRepository.findBycustomerId(Long id);
  }
  @Override
  public  PurchaseRecord getData(int id){

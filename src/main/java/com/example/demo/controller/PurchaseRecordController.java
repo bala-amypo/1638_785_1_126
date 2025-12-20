@@ -14,16 +14,16 @@ import java.util.List;
 public class PurchaseRecordController{
     @Autowired PurchaseRecordService purchaseRecordService;
 @PostMapping("/api/purchases")
-public PurchaseRecord dopost(@RequestBody PurchaseRecord stu){
-    return purchaseRecordService.postdata(stu);
+public PurchaseRecord dopost(@RequestBody PurchaseRecord purchase){
+    return purchaseRecordService.recordPurchase(purchase);
 }
-@GetMapping("/get")
+@GetMapping("/get/purchases/customer/{id}")
 public List<PurchaseRecord>getval(){
     return purchaseRecordService.getAllData();
 }
-@GetMapping("/getid/{id}")
-public PurchaseRecord getdataid(@PathVariable int id){
-   return purchaseRecordService.getData(id);
+@GetMapping("/get/purchases/customer/{customerId}")
+public PurchaseRecord getdataid(@PathVariable int customerId){
+   return purchaseRecordService.getPurchasesByCustomer(customerId);
 }
 @PutMapping ("/put/{id}")
 public PurchaseRecord putval(@PathVariable int id, @RequestBody PurchaseRecord entity){

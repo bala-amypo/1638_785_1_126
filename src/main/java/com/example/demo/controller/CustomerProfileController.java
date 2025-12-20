@@ -17,7 +17,7 @@ public class CustomerProfileController{
 public CustomerProfile dopost(@RequestBody CustomerProfile customer){
     return customerProfileService.createCustomer(customer);
 }
-@GetMapping("/api/customer")
+@GetMapping("/api/customers")
 public List<CustomerProfile>getval(){
     return customerProfileService.getAllCustomers();
 }
@@ -31,6 +31,10 @@ public CustomerProfile getdataid(@PathVariable int customerId){
 }
 @PutMapping ("/api/customer/{id}/tier")
 public CustomerProfile putval(@PathVariable long id, @RequestBody String newTier){
- return customerProfileService.updateData(id,entity);
+ return customerProfileService.updateTier(id,newTier);
+}
+@PutMapping ("/api/customer/{id}/status")
+public CustomerProfile putval(@PathVariable long id, @RequestBody boolean active){
+ return customerProfileService.updateStatus(id,active);
 }
 }

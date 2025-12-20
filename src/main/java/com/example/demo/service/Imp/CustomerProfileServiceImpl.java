@@ -5,6 +5,7 @@ import  com.example.demo.entity.CustomerProfile;
 import  com.example.demo.repository.CustomerProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
+import java.lang.String;
 
 @Service
 public class CustomerProfileServiceImpl implements CustomerProfileService{
@@ -26,10 +27,10 @@ public class CustomerProfileServiceImpl implements CustomerProfileService{
     return customerProfileRepository.findById(customerId).orElse(null);
  }
  @Override
- public  CustomerProfile updateTier(Long id,String newTier){
+ public  CustomerProfile updateTier(Long id,String currentTier){
     if(customerProfileRepository.existsById(id)){
-        newTier.setId(id);
-        return customerProfileRepository.save(newTier);
+        currentTier.setId(id);
+        return customerProfileRepository.save(currentTier);
     }
      return null;
  }

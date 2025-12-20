@@ -5,5 +5,7 @@ public interface CustomerProfileService{
     CustomerProfile createCustomer(CustomerProfile customer);
     List<CustomerProfile> getAllCustomers();
     CustomerProfile getCustomerById(Long id);
-    StudentEntity updateData(int id,StudentEntity entity);
+    CustomerProfile findByCustomerId(String customerid);
+    CustomerProfile updateTier(Long id,String newTier);
+    CustomerProfile updateStatus(Long id,boolean active);
 }

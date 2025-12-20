@@ -26,8 +26,8 @@ public CustomerProfile getdataid(@PathVariable Long id){
    return customerProfileService.getCustomerById(id);
 }
 @GetMapping("/api/customer/lookup/{customerId}")
-public CustomerProfile getdataid(@PathVariable int customerId){
-   return customerProfileService.findByCustomerId(id);
+public CustomerProfile getdataid(@PathVariable String customerId){
+   return customerProfileService.findByCustomerId(customerId);
 }
 @PutMapping ("/api/customer/{id}/tier")
 public CustomerProfile putval(@PathVariable long id, @RequestBody String newTier){

@@ -86,7 +86,7 @@ public class CustomerProfileServiceImpl implements CustomerProfileService {
         CustomerProfile customer = customerProfileRepository.findById(id).orElse(null);
 
         if (customer != null) {
-            customer.setTier(currentTier);
+            customer.setCurrentTier(currentTier);
             return customerProfileRepository.save(customer);
         }
         return null;

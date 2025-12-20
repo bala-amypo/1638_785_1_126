@@ -20,6 +20,6 @@ public class CustomerProfile{
     private String email;
     private String phone;
     private String currentTier;
-    private Boolean active;
+    private boolean active;
     private LocalDateTime createdAt;
     } 

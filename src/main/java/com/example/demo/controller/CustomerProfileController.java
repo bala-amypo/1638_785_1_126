@@ -17,13 +17,13 @@ public class CustomerProfileController{
 public CustomerProfile dopost(@RequestBody CustomerProfile customer){
     return customerProfileService.createCustomer(customer);
 }
-@GetMapping("/get")
+@GetMapping("/api/customer")
 public List<CustomerProfile>getval(){
-    return customerProfileService.getAllData();
+    return customerProfileService.getAllCustomers();
 }
-@GetMapping("/getid/{id}")
-public CustomerProfile getdataid(@PathVariable int id){
-   return customerProfileService.getData(id);
+@GetMapping("/api/customer/{id}")
+public CustomerProfile getdataid(@PathVariable Long id){
+   return customerProfileService.getCustomerById(id);
 }
 @PutMapping ("/put/{id}")
 public CustomerProfile putval(@PathVariable int id, @RequestBody CustomerProfile entity){

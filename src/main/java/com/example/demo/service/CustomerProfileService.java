@@ -5,7 +5,7 @@ public interface CustomerProfileService{
     CustomerProfile createCustomer(CustomerProfile customer);
     List<CustomerProfile> getAllCustomers();
     CustomerProfile getCustomerById(Long id);
-    CustomerProfile findByCustomerId(String customerid);
+    CustomerProfile findByCustomerId(String customerId);
     CustomerProfile updateTier(Long id,String newTier);
     CustomerProfile updateStatus(Long id,boolean active);
 }

@@ -12,16 +12,20 @@ import java.util.List;
 @RestController
 public class VisitRecordController{
     @Autowired VisitRecordService visitRecordService;
-@PostMapping("/post")
+@PostMapping("/api/visits")
 public VisitRecord dopost(@RequestBody VisitRecord visit){
-    return visitRecordService.postdata(visit);
+    return visitRecordService.recordVisit(visit);
 }
-@GetMapping("/get")
+@GetMapping("/api/visits")
 public List<VisitRecord>getval(){
-    return visitRecordService.getAllData();
+    return visitRecordService.getAllVisits();
+}
+@GetMapping("/api/visits/{id}")
+public VisitRecord getdataid(@PathVariable Long id){
+   return visitRecordService.getVisitsById(id);
 }
 @GetMapping("/getid/{id}")
-public VisitRecord getdataid(@PathVariable int id){
-   return ser.getData(id);
+public VisitRecord getdataid(@PathVariable long id){
+   return visitRecordService.getData(id);
 }
 }

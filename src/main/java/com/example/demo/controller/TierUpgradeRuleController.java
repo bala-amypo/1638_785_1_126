@@ -11,28 +11,34 @@ import com.example.demo.entity.TierUpgradeRule;
 import com.example.demo.service.TierUpgradeRuleService;
 import java.util.List;
 
-@RestController
-public class TierUpgradeRuleController{
-    @Autowired TierUpgradeRuleService tierUpgradeRuleService;
-@PostMapping("/api/tier-rules")
-public TierUpgradeRule dopost(@RequestBody TierUpgradeRule rule){
-    return tierUpgradeRuleService.createRule(rule);
-}
-@PutMapping ("/api/tier-rules/{id}")
-public TierUpgradeRule putval(@PathVariable Long id, @RequestBody rule){
- return tierUpgradeRuleService.updateRule(id,rule);
-}
-@GetMapping("/api/tier-rules")
-public List<TierUpgradeRule>getval(){
-    return tierUpgradeRuleService.getAllRules();
-}
-@GetMapping("/api/tier-rules/active")
-public List<TierUpgradeRule>getval(){
-    return tierUpgradeRuleService.getActiveRules();
-}
-@GetMapping("/api/tier-rules/lookup")
-public TierUpgradeRule getdataid(@PathVariable int id){
-   return tierUpgradeRuleService.getRule(fromTier,tiTier);
-}
 
+@RestController
+@RequestMapping("/api/tier-rules")
+public class TierUpgradeRuleController {
+@Autowired
+    private TierUpgradeRuleService tierUpgradeRuleService;
+    @PostMapping
+    public TierUpgradeRule createRule(@RequestBody TierUpgradeRule rule) {
+        return tierUpgradeRuleService.createRule(rule);
+    }
+    @PutMapping("/{id}")
+    public TierUpgradeRule updateRule(
+            @PathVariable Long id,
+            @RequestBody TierUpgradeRule rule) {
+        return tierUpgradeRuleService.updateRule(id, rule);
+    }
+    @GetMapping("/active")
+    public List<TierUpgradeRule> getActiveRules() {
+        return tierUpgradeRuleService.getActiveRules();
+    }
+    @GetMapping
+    public List<TierUpgradeRule> getAllRules() {
+        return tierUpgradeRuleService.getAllRules();
+    }
+    @GetMapping("/lookup")
+    public TierUpgradeRule getRule(
+            @RequestParam String fromTier,
+            @RequestParam String toTier) {
+        return tierUpgradeRuleService.getRule(fromTier, toTier);
+    }
 }

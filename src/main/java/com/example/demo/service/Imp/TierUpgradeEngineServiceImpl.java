@@ -44,7 +44,6 @@ public class TierUpgradeEngineServiceImpl implements TierUpgradeEngineService {
     @Override
     public TierHistoryRecord evaluateAndUpgradeTier(Long customerId) {
 
-        // 1️⃣ Get customer
         CustomerProfile customer =
                 customerProfileRepository.findById(customerId).orElse(null);
 
@@ -52,25 +51,22 @@ public class TierUpgradeEngineServiceImpl implements TierUpgradeEngineService {
             return null;
         }
 
-        // 2️⃣ Calculate total spend
         double totalSpend =
                 purchaseRecordRepository.findByCustomerId(customerId)
                         .stream()
                         .mapToDouble(PurchaseRecord::getAmount)
                         .sum();
 
-        // 3️⃣ Calculate total visits
+    
         long totalVisits =
                 visitRecordRepository.findByCustomerId(customerId).size();
 
-        // 4️⃣ Get current tier
+        
         String currentTier = customer.getCurrentTier();
 
-        // 5️⃣ Get active rules
         List<TierUpgradeRule> activeRules =
                 tierUpgradeRuleRepository.findByActiveTrue();
 
-        // 6️⃣ Evaluate rules
         for (TierUpgradeRule rule : activeRules) {
 
             if (rule.getFromTier().equals(currentTier)

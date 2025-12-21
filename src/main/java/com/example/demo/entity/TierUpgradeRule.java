@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
     private String fromTier;
     private String toTier;
     private double minSpend;
-    private int ;
-    private boolean visitDate;
+    private int minVisits ;
+    private boolean active;
  }
  

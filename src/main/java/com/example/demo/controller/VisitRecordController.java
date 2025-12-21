@@ -24,8 +24,8 @@ public List<VisitRecord>getval(){
 public VisitRecord getdataid(@PathVariable Long id){
    return visitRecordService.getVisitsById(id);
 }
-@GetMapping("/getid/{id}")
-public VisitRecord getdataid(@PathVariable long id){
-   return visitRecordService.getData(id);
+@GetMapping("/api/visits/customer/{customerId}")
+public VisitRecord getdataid(@PathVariable long customerId){
+   return visitRecordService.getVisitsByCustomer(customerId);
 }
 }

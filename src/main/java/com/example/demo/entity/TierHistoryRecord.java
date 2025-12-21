@@ -1,5 +1,5 @@
 package com.example.demo.entity ;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,10 +15,10 @@ import lombok.NoArgsConstructor;
      @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private String fromTier;
-    private String toTier;
-    private double minSpend;
-    private int minVisits ;
-    private boolean active;
+    private long customerId;
+    private String oldTier;
+    private String newTier;
+    private String reason;
+    private LocalDateTime changedAt;
  }
  

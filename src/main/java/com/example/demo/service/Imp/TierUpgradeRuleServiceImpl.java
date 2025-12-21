@@ -5,25 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.service.TierUpgradeRuleService;
 import com.example.demo.entity.TierUpgradeRule;
 import com.example.demo.repository.TierUpgradeRuleRepository;
-
 import java.util.List;
 
 @Service
 public class TierUpgradeRuleServiceImpl implements TierUpgradeRuleService {
-
-    @Autowired
-    private TierUpgradeRuleRepository tierUpgradeRuleRepository;
-
+    @Autowired TierUpgradeRuleRepository tierUpgradeRuleRepository;
     @Override
     public TierUpgradeRule createRule(TierUpgradeRule rule) {
         return tierUpgradeRuleRepository.save(rule);
     }
-
     @Override
     public List<TierUpgradeRule> getAllRules() {
         return tierUpgradeRuleRepository.findAll();
     }
-
     @Override
     public List<TierUpgradeRule> getActiveRules() {
         return tierUpgradeRuleRepository.findByActiveTrue();

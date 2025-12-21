@@ -18,8 +18,12 @@ public class VisitRecordServiceImpl implements VisitRecordService{
       return visitRecordRepository.findAll();
  }
  @Override
- public  VisitRecordEntity getData(int id){
+ public  VisitRecord getVisitById(Long id){
     return visitRecordRepository.findById(id).orElse(null);
+ }
+  @Override
+ public  VisitRecord getVisitByCustomer(long customerId){
+    return visitRecordRepository.findBycustomerId(customerId).orElse(null);
  }
 
 }

@@ -2,9 +2,8 @@ package com.example.demo.service;
 import com.example.demo.entity.VisitRecord;
 import java.util.List;
 public interface VisitRecordService{
-    StudentEntity postdata(StudentEntity stu);
-    List<StudentEntity> getAllData();
-    String deleteData(int id);
+    VisitRecord recordVisit(VisitRecord visit);
+    List<VisitRecord> getAllData();
     StudentEntity getData(int id);
     StudentEntity updateData(int id,StudentEntity entity);
 }

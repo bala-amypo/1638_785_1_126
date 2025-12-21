@@ -13,16 +13,20 @@ public class TierUpgradeRuleServiceImpl implements TierUpgradeRuleService{
     return tierUpgradeRuleRepository.save(rule);
  }
  @Override
- public List<TierUpgradeRule> getAllData(){
+ public List<TierUpgradeRule> getAllRules();{
       return tierUpgradeRuleRepository.findAll();
+ }
+  @Override
+ public List<TierUpgradeRule> getActiveRules();{
+      return tierUpgradeRuleRepository.findByActiveTrue();
  }
  @Override
  public  TierUpgradeRule getData(int id){
-    return tierUpgradeRuleRepository.findById(id).orElse(null);
+    return tierUpgradeRuleRepository.findBy;
  }
  @Override
  public  TierUpgradeRule updateRule(Long id,TierUpgradeRule updateRule){
-    if(student.existsById(id)){
+    if(tierUpgradeRuleRepository.existsById(id)){
         entity.setId(id);
         return tierUpgradeRuleRepository.save(updateRule);
     }

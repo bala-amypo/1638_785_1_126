@@ -22,13 +22,17 @@ public TierUpgradeRule dopost(@RequestBody TierUpgradeRule rule){
 public TierUpgradeRule putval(@PathVariable Long id, @RequestBody rule){
  return tierUpgradeRuleService.updateRule(id,rule);
 }
-@GetMapping("/get")
-public List<StudentEntity>getval(){
-    return tierUpgradeRuleService.getAllData();
+@GetMapping("/api/tier-rules")
+public List<TierUpgradeRule>getval(){
+    return tierUpgradeRuleService.getAllRules();
 }
-@GetMapping("/getid/{id}")
+@GetMapping("/api/tier-rules/active")
+public List<TierUpgradeRule>getval(){
+    return tierUpgradeRuleService.getActiveRules();
+}
+@GetMapping("/api/tier-rules/lookup")
 public TierUpgradeRule getdataid(@PathVariable int id){
-   return tierUpgradeRuleService.getData(id);
+   return tierUpgradeRuleService.getRule(fromTier,tiTier);
 }
 
 }

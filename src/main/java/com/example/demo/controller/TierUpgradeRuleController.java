@@ -13,29 +13,29 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/tier-rules")
+@RequestMapping
 public class TierUpgradeRuleController {
 @Autowired
     private TierUpgradeRuleService tierUpgradeRuleService;
-    @PostMapping
+    @PostMapping("/api/tier-rules")
     public TierUpgradeRule createRule(@RequestBody TierUpgradeRule rule) {
         return tierUpgradeRuleService.createRule(rule);
     }
-    @PutMapping("/{id}")
+    @PutMapping("/api/tier-rules/{id}")
     public TierUpgradeRule updateRule(
             @PathVariable Long id,
             @RequestBody TierUpgradeRule rule) {
         return tierUpgradeRuleService.updateRule(id, rule);
     }
-    @GetMapping("/active")
+    @GetMapping("/api/tier-rules/active")
     public List<TierUpgradeRule> getActiveRules() {
         return tierUpgradeRuleService.getActiveRules();
     }
-    @GetMapping
+    @GetMapping("/api/tier-rules")
     public List<TierUpgradeRule> getAllRules() {
         return tierUpgradeRuleService.getAllRules();
     }
-    @GetMapping("/lookup")
+    @GetMapping("/api/tier-rules/lookup")
     public TierUpgradeRule getRule(
             @RequestParam String fromTier,
             @RequestParam String toTier) {

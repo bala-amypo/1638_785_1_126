@@ -24,8 +24,7 @@ public class TierUpgradeRuleServiceImpl implements TierUpgradeRuleService {
     }
     @Override
     public TierUpgradeRule getRule(String fromTier, String toTier) {
-        return tierUpgradeRuleRepository
-                .findByFromTierAndToTier(fromTier, toTier);
+        return tierUpgradeRuleRepository.findByFromTierAndToTier(fromTier, toTier);
     }
     @Override
     public TierUpgradeRule updateRule(Long id, TierUpgradeRule updatedRule) {

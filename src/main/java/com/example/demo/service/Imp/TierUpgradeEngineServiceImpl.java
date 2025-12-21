@@ -53,7 +53,6 @@ for (TierUpgradeRule rule : activeRules) {
                 history.setNewTier(rule.getToTier());
                 history.setReason("Upgrade criteria met");
                 history.setChangedAt(LocalDateTime.now());
-
                 return tierHistoryRecordRepository.save(history);
             }
         }

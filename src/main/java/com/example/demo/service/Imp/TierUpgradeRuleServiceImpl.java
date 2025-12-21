@@ -22,13 +22,11 @@ public class TierUpgradeRuleServiceImpl implements TierUpgradeRuleService {
     public List<TierUpgradeRule> getActiveRules() {
         return tierUpgradeRuleRepository.findByActiveTrue();
     }
-
     @Override
     public TierUpgradeRule getRule(String fromTier, String toTier) {
         return tierUpgradeRuleRepository
                 .findByFromTierAndToTier(fromTier, toTier);
     }
-
     @Override
     public TierUpgradeRule updateRule(Long id, TierUpgradeRule updatedRule) {
         TierUpgradeRule existing =

@@ -9,8 +9,8 @@ import java.util.List;
 @Service
 public class TierUpgradeRuleServiceImpl implements TierUpgradeRuleService{
       @Autowired TierUpgradeRuleRepository tierUpgradeRuleRepository;
- public TierUpgradeRule postdata(TierUpgradeRule stu){
-    return tierUpgradeRuleRepository.save(stu);
+ public TierUpgradeRule createRule(TierUpgradeRule rule){
+    return tierUpgradeRuleRepository.save(rule);
  }
  @Override
  public List<TierUpgradeRule> getAllData(){
@@ -21,10 +21,10 @@ public class TierUpgradeRuleServiceImpl implements TierUpgradeRuleService{
     return tierUpgradeRuleRepository.findById(id).orElse(null);
  }
  @Override
- public  TierUpgradeRule updateData(int id,TierUpgradeRule entity){
+ public  TierUpgradeRule updateRule(Long id,TierUpgradeRule updateRule){
     if(student.existsById(id)){
         entity.setId(id);
-        return tierUpgradeRuleRepository.save(entity);
+        return tierUpgradeRuleRepository.save(updateRule);
     }
      return null;
  }

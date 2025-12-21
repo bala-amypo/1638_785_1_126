@@ -43,33 +43,20 @@ public class TierUpgradeEngineServiceImpl implements TierUpgradeEngineService {
         double totalSpend =purchaseRecordRepository.findByCustomerId(customerId).stream().mapToDouble(PurchaseRecord::getAmount).sum();
          long totalVisits =visitRecordRepository.findByCustomerId(customerId).size();
         String currentTier = customer.getCurrentTier();
-
-        List<TierUpgradeRule> activeRules =
-                tierUpgradeRuleRepository.findByActiveTrue();
-
-        for (TierUpgradeRule rule : activeRules) {
-
-            if (rule.getFromTier().equals(currentTier)
-                    && totalSpend >= rule.getMinSpend()
-                    && totalVisits >= rule.getMinVisits()) {
-
-                // Upgrade customer tier
+        List<TierUpgradeRule> activeRules = tierUpgradeRuleRepository.findByActiveTrue();
+        for (TierUpgradeRule rule : activeRules) 
+            if (rule.getFromTier().equals(currentTier)&& totalSpend >= rule.getMinSpend()&& totalVisits >= rule.getMinVisits()) {
                 customer.setCurrentTier(rule.getToTier());
                 customerProfileRepository.save(customer);
-
-                // Create history record
                 TierHistoryRecord history = new TierHistoryRecord();
                 history.setCustomerId(customerId);
                 history.setOldTier(currentTier);
                 history.setNewTier(rule.getToTier());
                 history.setReason("Upgrade criteria met");
                 history.setChangedAt(LocalDateTime.now());
-
                 return tierHistoryRecordRepository.save(history);
             }
         }
-
-        // No upgrade happened
         return null;
     }
 

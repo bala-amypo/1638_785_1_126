@@ -32,7 +32,7 @@ public class TierUpgradeEngineServiceImpl implements TierUpgradeEngineService {
                 customerProfileRepository.findById(customerId).orElse(null);
         if (customer == null) return null;
         double totalSpend =
-                purchaseRecordRepository.findByCustomerId(customerId)
+                purchaseRecordRepository.findByCustomerId( long customerId)
                         .stream()
                         .mapToDouble(PurchaseRecord::getAmount)
                         .sum();

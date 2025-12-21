@@ -21,8 +21,8 @@ public class TierUpgradeRuleServiceImpl implements TierUpgradeRuleService{
       return tierUpgradeRuleRepository.findByActiveTrue();
  }
  @Override
- public  TierUpgradeRule getData(int id){
-    return tierUpgradeRuleRepository.findBy;
+ public  TierUpgradeRule getRule(String fromTier, String toTier){
+    return tierUpgradeRuleRepository.findByFromTierAndToTier(fromTier,toTier);
  }
  @Override
  public  TierUpgradeRule updateRule(Long id,TierUpgradeRule updateRule){

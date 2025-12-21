@@ -15,8 +15,10 @@ import lombok.NoArgsConstructor;
      @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private long customerId;
-    private LocalDate visitDate;
-    private String channel;
+    private String fromTier;
+    private String toTier;
+    private double minSpend;
+    private int ;
+    private boolean visitDate;
  }
  

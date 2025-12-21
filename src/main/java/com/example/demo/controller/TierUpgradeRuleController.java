@@ -23,9 +23,7 @@ public class TierUpgradeRuleController {
         return tierUpgradeRuleService.createRule(rule);
     }
     @PutMapping("/{id}")
-    public TierUpgradeRule updateRule(
-            @PathVariable Long id,
-            @RequestBody TierUpgradeRule rule) {
+    public TierUpgradeRule updateRule( @PathVariable Long id, @RequestBody TierUpgradeRule rule) {
         return tierUpgradeRuleService.updateRule(id, rule);
     }
     @GetMapping("/active")

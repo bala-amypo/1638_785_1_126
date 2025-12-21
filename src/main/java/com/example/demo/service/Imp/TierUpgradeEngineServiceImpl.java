@@ -21,42 +21,27 @@ public class TierUpgradeEngineServiceImpl implements TierUpgradeEngineService {
     private final VisitRecordRepository visitRecordRepository;
     private final TierUpgradeRuleRepository tierUpgradeRuleRepository;
     private final TierHistoryRecordRepository tierHistoryRecordRepository;
-
     public TierUpgradeEngineServiceImpl(
             CustomerProfileRepository customerProfileRepository,
             PurchaseRecordRepository purchaseRecordRepository,
             VisitRecordRepository visitRecordRepository,
             TierUpgradeRuleRepository tierUpgradeRuleRepository,
             TierHistoryRecordRepository tierHistoryRecordRepository) {
-
         this.customerProfileRepository = customerProfileRepository;
         this.purchaseRecordRepository = purchaseRecordRepository;
         this.visitRecordRepository = visitRecordRepository;
         this.tierUpgradeRuleRepository = tierUpgradeRuleRepository;
         this.tierHistoryRecordRepository = tierHistoryRecordRepository;
     }
-
     @Override
     public TierHistoryRecord evaluateAndUpgradeTier(Long customerId) {
-
         CustomerProfile customer =
                 customerProfileRepository.findById(customerId).orElse(null);
-
         if (customer == null) {
             return null;
         }
-
-        double totalSpend =
-                purchaseRecordRepository.findByCustomerId(customerId)
-                        .stream()
-                        .mapToDouble(PurchaseRecord::getAmount)
-                        .sum();
-
-    
-        long totalVisits =
-                visitRecordRepository.findByCustomerId(customerId).size();
-
-        
+        double totalSpend =purchaseRecordRepository.findByCustomerId(customerId).stream().mapToDouble(PurchaseRecord::getAmount).sum();
+         long totalVisits =visitRecordRepository.findByCustomerId(customerId).size();
         String currentTier = customer.getCurrentTier();
 
         List<TierUpgradeRule> activeRules =

@@ -8,35 +8,18 @@ import java.util.List;
 
 @Service
 public class VisitRecordServiceImpl implements VisitRecordService{
-      @Autowired StudentRepository student;
-      //save()
-      //findall()
-      //findById()
-      //deleteById()
-      //existsById()
+      @Autowired VisitRecordRepository visitRecordRepository;
       @Override
- public StudentEntity postdata(StudentEntity stu){
-    return student.save(stu);
+ public VisitRecord recordVisit(VisitRecord visit){
+    return visitRecordRepository.save(visit);
  }
  @Override
- public List<StudentEntity> getAllData(){
-      return student.findAll();
+ public List<VisitRecord> getAllVisits(){
+      return visitRecordRepository.findAll();
  }
  @Override
- public  String deleteData(int id){
-     student.deleteById(id);
-     return "Deleted Successfully";
+ public  VisitRecordEntity getData(int id){
+    return visitRecordRepository.findById(id).orElse(null);
  }
- @Override
- public  StudentEntity getData(int id){
-    return student.findById(id).orElse(null);
- }
- @Override
- public  StudentEntity updateData(int id,StudentEntity entity){
-    if(student.existsById(id)){
-        entity.setId(id);
-        return student.save(entity);
-    }
-     return null;
- }
+
 }

@@ -13,21 +13,22 @@ import java.util.List;
 
 @RestController
 public class TierUpgradeRuleController{
-    @Autowired TierUpgradeRuleService ser;
-@PostMapping("/post")
-public TierUpgradeRule dopost(@RequestBody TierUpgradeRule stu){
-    return ser.postdata(stu);
+    @Autowired TierUpgradeRuleService tierUpgradeRuleService;
+@PostMapping("/api/tier-rules")
+public TierUpgradeRule dopost(@RequestBody TierUpgradeRule rule){
+    return tierUpgradeRuleService.createRule(rule);
+}
+@PutMapping ("/api/tier-rules/{id}")
+public TierUpgradeRule putval(@PathVariable Long id, @RequestBody rule){
+ return tierUpgradeRuleService.updateRule(id,rule);
 }
 @GetMapping("/get")
 public List<StudentEntity>getval(){
-    return ser.getAllData();
+    return tierUpgradeRuleService.getAllData();
 }
 @GetMapping("/getid/{id}")
 public TierUpgradeRule getdataid(@PathVariable int id){
-   return ser.getData(id);
+   return tierUpgradeRuleService.getData(id);
 }
-@PutMapping ("/put/{id}")
-public TierUpgradeRule putval(@PathVariable int id, @RequestBody StudentEntity entity){
- return ser.updateData(id,entity);
-}
+
 }

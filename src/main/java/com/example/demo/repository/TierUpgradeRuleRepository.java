@@ -3,7 +3,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.entity.TierUpgradeRule;
 @Repository
-public interface StudentRepository extends JpaRepository<StudentEntity,Integer>{
+public interface TierUpgradeRuleRepository extends JpaRepository<TierUpgradeRule,Long>{
     
 
 }

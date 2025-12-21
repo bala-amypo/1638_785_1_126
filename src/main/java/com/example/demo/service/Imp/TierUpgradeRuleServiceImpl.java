@@ -1,41 +1,30 @@
 package com.example.demo.service.Impl;
 import org.springframework.stereotype.Service;
-import com.example.demo.service.StudentService;
-import  com.example.demo.entity.StudentEntity;
-import  com.example.demo.repository.StudentRepository;
+import com.example.demo.service.TierUpgradeRuleService;
+import  com.example.demo.entity.TierUpgradeRule;
+import  com.example.demo.repository.TierUpgradeRuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
-public class StudentServiceImpl implements StudentService{
-      @Autowired StudentRepository student;
-      //save()
-      //findall()
-      //findById()
-      //deleteById()
-      //existsById()
-      @Override
- public StudentEntity postdata(StudentEntity stu){
-    return student.save(stu);
+public class TierUpgradeRuleServiceImpl implements TierUpgradeRuleService{
+      @Autowired TierUpgradeRuleRepository tierUpgradeRuleRepository;
+ public TierUpgradeRule postdata(TierUpgradeRule stu){
+    return tierUpgradeRuleRepository.save(stu);
  }
  @Override
- public List<StudentEntity> getAllData(){
-      return student.findAll();
+ public List<TierUpgradeRule> getAllData(){
+      return tierUpgradeRuleRepository.findAll();
  }
  @Override
- public  String deleteData(int id){
-     student.deleteById(id);
-     return "Deleted Successfully";
+ public  TierUpgradeRule getData(int id){
+    return tierUpgradeRuleRepository.findById(id).orElse(null);
  }
  @Override
- public  StudentEntity getData(int id){
-    return student.findById(id).orElse(null);
- }
- @Override
- public  StudentEntity updateData(int id,StudentEntity entity){
+ public  TierUpgradeRule updateData(int id,TierUpgradeRule entity){
     if(student.existsById(id)){
         entity.setId(id);
-        return student.save(entity);
+        return tierUpgradeRuleRepository.save(entity);
     }
      return null;
  }

@@ -1,26 +1,21 @@
 package com.example.demo.service.Impl;
 
 import org.springframework.stereotype.Service;
-
 import com.example.demo.entity.CustomerProfile;
 import com.example.demo.entity.PurchaseRecord;
 import com.example.demo.entity.TierHistoryRecord;
 import com.example.demo.entity.TierUpgradeRule;
-
 import com.example.demo.repository.CustomerProfileRepository;
 import com.example.demo.repository.PurchaseRecordRepository;
 import com.example.demo.repository.VisitRecordRepository;
 import com.example.demo.repository.TierUpgradeRuleRepository;
 import com.example.demo.repository.TierHistoryRecordRepository;
-
 import com.example.demo.service.TierUpgradeEngineService;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class TierUpgradeEngineServiceImpl implements TierUpgradeEngineService {
-
     private final CustomerProfileRepository customerProfileRepository;
     private final PurchaseRecordRepository purchaseRecordRepository;
     private final VisitRecordRepository visitRecordRepository;

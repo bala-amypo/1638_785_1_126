@@ -13,7 +13,6 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping
 public class TierUpgradeRuleController {
 @Autowired
     private TierUpgradeRuleService tierUpgradeRuleService;

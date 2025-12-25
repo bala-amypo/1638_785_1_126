@@ -1,8 +1,6 @@
 package com.example.demo.exception;
-
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,22 +8,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
-    // Handles entity not found cases
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<CustomExceptionHandler> handleNoSuchElementException(
-            NoSuchElementException ex) {
-
-        CustomExceptionHandler error = new CustomExceptionHandler(
+    public ResponseEntity<CustomExceptionHandler> handleNoSuchElementException(NoSuchElementException ex) {
+  CustomExceptionHandler error = new CustomExceptionHandler(
                 ex.getMessage(),
                 HttpStatus.NOT_FOUND.value(),
                 LocalDateTime.now()
         );
-
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
-
-    // Handles validation & invalid input cases
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<CustomExceptionHandler> handleIllegalArgumentException(
             IllegalArgumentException ex) {

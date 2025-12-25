@@ -1,25 +1,46 @@
-package com.example.demo.entity ;
+package com.example.demo.entity;
 import java.time.LocalDateTime;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Entity
+@Table(name = "customer_profiles")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class CustomerProfile{
+@AllArgsConstructor
+public class CustomerProfile {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
     private String customerId;
     private String fullName;
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(unique = true, nullable = false)
     private String phone;
     private String currentTier;
-    private boolean active;
+    private Boolean active;
     private LocalDateTime createdAt;
-    } 
+    @PrePersist
+    public void onCreate() {
+        LocalDateTime now = LocalDateTime.now();
+        if (this.createdAt == null) {
+            this.createdAt = now;
+        }
+        if (this.currentTier == null) {
+            this.currentTier = "BRONZE";
+        }
+        if (this.active == null) {
+            this.active = true;
+        }
+    }
+}

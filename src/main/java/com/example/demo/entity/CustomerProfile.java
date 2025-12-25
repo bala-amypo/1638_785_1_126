@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,14 +21,20 @@ public class CustomerProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     @Column(unique = true, nullable = false)
     private String customerId;
+    @NotNull
     private String fullName;
+    @NotNull
     @Column(unique = true, nullable = false)
     private String email;
+    @NotNull
     @Column(unique = true, nullable = false)
     private String phone;
+    @NotNull
     private String currentTier;
+    @NotNull
     private Boolean active;
     private LocalDateTime createdAt;
     @PrePersist

@@ -19,23 +19,23 @@ public class VisitRecord {
 
     @Column(name = "customer_id")
     private Long customerId;
-
     private LocalDate visitDate;
     private String channel;
 
     public VisitRecord() {}
 
     public void setId(Long id) { this.id = id; }
+    public void setCustomerid(Long customerId) { this.customerId = customerId; }
     public void setVisitDate(LocalDate visitDate) { this.visitDate = visitDate; }
     public void setChannel(String channel) { this.channel = channel; }
 
-    public void setCustomer(CustomerProfile customer) {
-        this.customerId = customer.getId();
-    }
+    // public void setCustomer(CustomerProfile customer) {
+    //     this.customerId = customer.getId();
+    // }
 
-    public Long getId() { return id; }
-    public Long getCustomerId() { return customerId; }
-    public LocalDate getVisitDate() { return visitDate; }
-    public String getChannel() { return channel; }
+    // public Long getId() { return id; }
+    // public Long getCustomerId() { return customerId; }
+    // public LocalDate getVisitDate() { return visitDate; }
+    // public String getChannel() { return channel; }
 }
 

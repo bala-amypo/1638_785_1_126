@@ -30,41 +30,51 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "purchase_record")
-public class PurchaseRecord {
+@Table(name = "tier_history_record")
+public class TierHistoryRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "customer_id")
+    @Column(name = "customer_id", nullable = false)
     private Long customerId;
 
-    private Double amount;
-    private LocalDate purchaseDate;
-    private String storeLocation;
+    private String oldTier;
+    private String newTier;
+    private String reason;
+    private LocalDateTime changedAt;
 
-    public PurchaseRecord() {}
+    public TierHistoryRecord() {}
 
-    public void setId(Long id) { this.id = id; }
-    public void setAmount(Double amount) { this.amount = amount; }
-    public void setPurchaseDate(LocalDate purchaseDate) { this.purchaseDate = purchaseDate; }
-    public void setStoreLocation(String storeLocation) { this.storeLocation = storeLocation; }
-
-    public void setCustomer(CustomerProfile customer) {
-        this.customerId = customer.getId();
+    public TierHistoryRecord(Long customerId,
+                             String oldTier,
+                             String newTier,
+                             String reason,
+                             LocalDateTime changedAt) {
+        this.customerId = customerId;
+        this.oldTier = oldTier;
+        this.newTier = newTier;
+        this.reason = reason;
+        this.changedAt = changedAt;
     }
 
     public Long getId() { return id; }
     public Long getCustomerId() { return customerId; }
-    public Double getAmount() { return amount; }
-    public LocalDate getPurchaseDate() { return purchaseDate; }
-    public String getStoreLocation() { return storeLocation; }
+    public String getOldTier() { return oldTier; }
+    public String getNewTier() { return newTier; }
+    public String getReason() { return reason; }
+    public LocalDateTime getChangedAt() { return changedAt; }
+
+    public void setId(Long id) { this.id = id; }
+    public void setCustomerId(Long customerId) { this.customerId = customerId; }
+    public void setOldTier(String oldTier) { this.oldTier = oldTier; }
+    public void setNewTier(String newTier) { this.newTier = newTier; }
+    public void setReason(String reason) { this.reason = reason; }
+    public void setChangedAt(LocalDateTime changedAt) { this.changedAt = changedAt; }
 }
 

@@ -30,50 +30,38 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 
-import java.time.LocalDateTime;
-
 @Entity
-@Table(name = "tier_history_record")
-public class TierHistoryRecord {
+@Table(name = "tier_upgrade_rule")
+public class TierUpgradeRule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "customer_id", nullable = false)
-    private Long customerId;
+    @Column(nullable = false)
+    private String fromTier;
 
-    private String oldTier;
-    private String newTier;
-    private String reason;
-    private LocalDateTime changedAt;
+    @Column(nullable = false)
+    private String toTier;
 
-    public TierHistoryRecord() {}
+    private Double minSpend;
+    private Integer minVisits;
+    private Boolean active;
 
-    public TierHistoryRecord(Long customerId,
-                             String oldTier,
-                             String newTier,
-                             String reason,
-                             LocalDateTime changedAt) {
-        this.customerId = customerId;
-        this.oldTier = oldTier;
-        this.newTier = newTier;
-        this.reason = reason;
-        this.changedAt = changedAt;
-    }
-
-    public Long getId() { return id; }
-    public Long getCustomerId() { return customerId; }
-    public String getOldTier() { return oldTier; }
-    public String getNewTier() { return newTier; }
-    public String getReason() { return reason; }
-    public LocalDateTime getChangedAt() { return changedAt; }
+    public TierUpgradeRule() {}
 
     public void setId(Long id) { this.id = id; }
-    public void setCustomerId(Long customerId) { this.customerId = customerId; }
-    public void setOldTier(String oldTier) { this.oldTier = oldTier; }
-    public void setNewTier(String newTier) { this.newTier = newTier; }
-    public void setReason(String reason) { this.reason = reason; }
-    public void setChangedAt(LocalDateTime changedAt) { this.changedAt = changedAt; }
+    public void setFromTier(String fromTier) { this.fromTier = fromTier; }
+    public void setToTier(String toTier) { this.toTier = toTier; }
+    public void setMinSpend(Double minSpend) { this.minSpend = minSpend; }
+    public void setMinVisits(Integer minVisits) { this.minVisits = minVisits; }
+    public void setActive(Boolean active) { this.active = active; }
+
+    public Long getId() { return id; }
+    public String getFromTier() { return fromTier; }
+    public String getToTier() { return toTier; }
+    public Double getMinSpend() { return minSpend; }
+    public Integer getMinVisits() { return minVisits; }
+    public Boolean getActive() { return active; }
 }
 

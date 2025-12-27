@@ -138,4 +138,10 @@ public class AuthController {
 
         String token =
                 jwtUtil.generateToken(
-                        customer.ge
+                        customer.getEmail(),
+                        "USER"
+                );
+
+        return new AuthResponse(token, "USER");
+    }
+}

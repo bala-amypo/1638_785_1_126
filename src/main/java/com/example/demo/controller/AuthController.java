@@ -57,10 +57,15 @@ public class AuthController {
         //         customer.getId(),
         //         customer.getEmail(),
         //         "USER"
-        // );
+        // // );
+        // String token = jwtUtil.generateToken(
+        // customer.getEmail(),
+        // customer.getRole()
         String token = jwtUtil.generateToken(
         customer.getEmail(),
-        customer.getRole()
+        "USER"
+);
+
 );
 
 

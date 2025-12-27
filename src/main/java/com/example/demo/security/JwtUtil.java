@@ -47,7 +47,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtUtil {
 
-    // ✅ Secure 256-bit key for HS256
+    // ✅ Secure key (256+ bits)
     private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
@@ -59,9 +59,24 @@ public class JwtUtil {
                 .claim("userId", userId)
                 .claim("role", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .setExpiration(
+                        new Date(System.currentTimeMillis() + EXPIRATION_TIME)
+                )
                 .signWith(key)
                 .compact();
+    }
+
+    // ✅ METHOD YOUR FILTER EXPECTS
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public Claims extractAllClaims(String token) {

@@ -65,19 +65,14 @@ public class JwtUtil {
                 .signWith(key)
                 .compact();
     }
+public Claims validateToken(String token) {
+    return Jwts.parserBuilder()
+            .setSigningKey(key)
+            .build()
+            .parseClaimsJws(token)
+            .getBody();
+}
 
-    // ✅ METHOD YOUR FILTER EXPECTS
-    public boolean validateToken(String token) {
-        try {
-            Jwts.parserBuilder()
-                    .setSigningKey(key)
-                    .build()
-                    .parseClaimsJws(token);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
     public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()

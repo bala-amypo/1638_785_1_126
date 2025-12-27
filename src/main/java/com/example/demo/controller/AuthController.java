@@ -53,11 +53,16 @@ public class AuthController {
                         .orElseThrow(() ->
                                 new IllegalArgumentException("Invalid credentials"));
 
+        // String token = jwtUtil.generateToken(
+        //         customer.getId(),
+        //         customer.getEmail(),
+        //         "USER"
+        // );
         String token = jwtUtil.generateToken(
-                customer.getId(),
-                customer.getEmail(),
-                "USER"
-        );
+        customer.getEmail(),
+        customer.getRole()
+);
+
 
         return ResponseEntity.ok(
                 new ApiResponse<>(true, "Login successful", token)

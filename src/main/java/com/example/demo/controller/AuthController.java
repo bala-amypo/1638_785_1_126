@@ -25,17 +25,35 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<ApiResponse<CustomerProfile>> register(
-            @RequestBody RegisterRequest request) {
+//     @PostMapping("/register")
+//     public ResponseEntity<ApiResponse<CustomerProfile>> register(
+//             @RequestBody RegisterRequest request) {
 
-        CustomerProfile customer = new CustomerProfile();
-        customer.setCustomerId(request.getEmail()); // using email as ID
-        customer.setEmail(request.getEmail());
-        customer.setFullName(request.getFullName());
-        customer.setPhone(request.getPhone());
-        customer.setCurrentTier("BRONZE");
-        customer.setActive(true);
+//         CustomerProfile customer = new CustomerProfile();
+//         customer.setCustomerId(request.getEmail()); // using email as ID
+//         customer.setEmail(request.getEmail());
+//         customer.setFullName(request.getFullName());
+//         customer.setPhone(request.getPhone());
+//         customer.setCurrentTier("BRONZE");
+//         customer.setActive(true);
+
+
+        @PostMapping("/register")
+public CustomerProfile register(@RequestBody RegisterRequest req) {
+
+    CustomerProfile c = new CustomerProfile();
+    c.setEmail(req.getEmail());
+    c.setCustomerId(req.getEmail());
+    c.setFullName(req.getFullName());
+    c.setPhone(req.getPhone());
+    c.setRole("USER");
+    c.setPassword(passwordEncoder.encode(req.getPassword()));
+    c.setActive(true);
+    c.setCurrentTier("BRONZE");
+
+    return customerService.createCustomer(c);
+}
+
 
         CustomerProfile saved = customerService.createCustomer(customer);
 

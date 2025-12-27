@@ -14,4 +14,6 @@ public interface CustomerProfileRepository
     Optional<CustomerProfile> findByCustomerId(String customerId);
 
     Optional<CustomerProfile> findByEmail(String email);
+
+
 }

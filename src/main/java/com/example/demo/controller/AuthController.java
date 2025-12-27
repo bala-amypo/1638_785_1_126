@@ -62,23 +62,46 @@ public CustomerProfile register(@RequestBody RegisterRequest req) {
         );
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<ApiResponse<String>> login(
-            @RequestBody LoginRequest request) {
+//     @PostMapping("/login")
+//     public ResponseEntity<ApiResponse<String>> login(
+//             @RequestBody LoginRequest request) {
 
-        CustomerProfile customer =
-                customerService.findByCustomerId(request.getEmail())
-                        .orElseThrow(() ->
-                                new IllegalArgumentException("Invalid credentials"));
+//         CustomerProfile customer =
+//                 customerService.findByCustomerId(request.getEmail())
+//                         .orElseThrow(() ->
+//                                 new IllegalArgumentException("Invalid credentials"));
 
-        String token = jwtUtil.generateToken(
-                customer.getId(),
-                customer.getEmail(),
-                "USER"
-        );
+//         String token = jwtUtil.generateToken(
+//                 customer.getId(),
+//                 customer.getEmail(),
+//                 "USER"
+//         );
 
-        return ResponseEntity.ok(
-                new ApiResponse<>(true, "Login successful", token)
-        );
+//         return ResponseEntity.ok(
+//                 new ApiResponse<>(true, "Login successful", token)
+//         );
+@PostMapping("/login")
+public AuthResponse login(@RequestBody AuthRequest request) {
+
+    CustomerProfile customer =
+            customerService.findByCustomerId(request.getEmail())
+                    .orElseThrow(() ->
+                        new RuntimeException("User not found"));
+
+    if (!passwordEncoder.matches(
+            request.getPassword(),
+            customer.getPassword())) {
+        throw new RuntimeException("Invalid credentials");
     }
+
+    String token =
+            jwtUtil.generateToken(
+                    customer.getEmail(),
+                    customer.getRole()
+            );
+
+    return new AuthResponse(token, customer.getRole());
 }
+        }
+   // }
+

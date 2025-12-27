@@ -25,19 +25,17 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-//     @PostMapping("/register")
-//     public ResponseEntity<ApiResponse<CustomerProfile>> register(
-//             @RequestBody RegisterRequest request) {
+    @PostMapping("/register")
+    public ResponseEntity<ApiResponse<CustomerProfile>> register(
+            @RequestBody RegisterRequest request) {
 
-//         CustomerProfile customer = new CustomerProfile();
-//         customer.setCustomerId(request.getEmail()); // using email as ID
-//         customer.setEmail(request.getEmail());
-//         customer.setFullName(request.getFullName());
-//         customer.setPhone(request.getPhone());
-//         customer.setCurrentTier("BRONZE");
-//         customer.setActive(true);
-
-
+        CustomerProfile customer = new CustomerProfile();
+        customer.setCustomerId(request.getEmail()); // using email as ID
+        customer.setEmail(request.getEmail());
+        customer.setFullName(request.getFullName());
+        customer.setPhone(request.getPhone());
+        customer.setCurrentTier("BRONZE");
+        customer.setActive(true);
         @PostMapping("/register")
 public CustomerProfile register(@RequestBody RegisterRequest req) {
 
@@ -62,46 +60,23 @@ public CustomerProfile register(@RequestBody RegisterRequest req) {
         );
     }
 
-//     @PostMapping("/login")
-//     public ResponseEntity<ApiResponse<String>> login(
-//             @RequestBody LoginRequest request) {
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<String>> login(
+            @RequestBody LoginRequest request) {
 
-//         CustomerProfile customer =
-//                 customerService.findByCustomerId(request.getEmail())
-//                         .orElseThrow(() ->
-//                                 new IllegalArgumentException("Invalid credentials"));
+        CustomerProfile customer =
+                customerService.findByCustomerId(request.getEmail())
+                        .orElseThrow(() ->
+                                new IllegalArgumentException("Invalid credentials"));
 
-//         String token = jwtUtil.generateToken(
-//                 customer.getId(),
-//                 customer.getEmail(),
-//                 "USER"
-//         );
+        String token = jwtUtil.generateToken(
+                customer.getId(),
+                customer.getEmail(),
+                "USER"
+        );
 
-//         return ResponseEntity.ok(
-//                 new ApiResponse<>(true, "Login successful", token)
-//         );
-@PostMapping("/login")
-public AuthResponse login(@RequestBody AuthRequest request) {
-
-    CustomerProfile customer =
-            customerService.findByCustomerId(request.getEmail())
-                    .orElseThrow(() ->
-                        new RuntimeException("User not found"));
-
-    if (!passwordEncoder.matches(
-            request.getPassword(),
-            customer.getPassword())) {
-        throw new RuntimeException("Invalid credentials");
+        return ResponseEntity.ok(
+                new ApiResponse<>(true, "Login successful", token)
+        );
     }
-
-    String token =
-            jwtUtil.generateToken(
-                    customer.getEmail(),
-                    customer.getRole()
-            );
-
-    return new AuthResponse(token, customer.getRole());
 }
-        }
-   // }
-

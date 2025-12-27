@@ -36,22 +36,6 @@ public class AuthController {
         customer.setPhone(request.getPhone());
         customer.setCurrentTier("BRONZE");
         customer.setActive(true);
-        @PostMapping("/register")
-public CustomerProfile register(@RequestBody RegisterRequest req) {
-
-    CustomerProfile c = new CustomerProfile();
-    c.setEmail(req.getEmail());
-    c.setCustomerId(req.getEmail());
-    c.setFullName(req.getFullName());
-    c.setPhone(req.getPhone());
-    c.setRole("USER");
-    c.setPassword(passwordEncoder.encode(req.getPassword()));
-    c.setActive(true);
-    c.setCurrentTier("BRONZE");
-
-    return customerService.createCustomer(c);
-}
-
 
         CustomerProfile saved = customerService.createCustomer(customer);
 
@@ -80,3 +64,4 @@ public CustomerProfile register(@RequestBody RegisterRequest req) {
         );
     }
 }
+

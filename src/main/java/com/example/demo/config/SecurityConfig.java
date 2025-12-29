@@ -19,13 +19,11 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // swagger + auth MUST be open
                 .requestMatchers(
                         "/auth/**",
                         "/swagger-ui/**",
                         "/v3/api-docs/**"
                 ).permitAll()
-                // everything else open (IMPORTANT FOR TESTS)
                 .anyRequest().permitAll()
             );
 
